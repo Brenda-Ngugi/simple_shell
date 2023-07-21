@@ -1,6 +1,4 @@
 #include "shell.h"
-#include <stdlib.h>
-#include <unistd.h>
 /**
  * _getenv - Get a environment variable
  *
