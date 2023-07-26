@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "general.h"
 
 /* Entry point of the shell */
@@ -50,6 +51,7 @@ void echo_printer(int index, char *text, char **arguments);
 
 /* commands.c */
 void analyze(char **arguments, general_t *info, char *buff);
+void free_memory_p(void* ptr);
 
 /* permissions.c */
 int is_executable(char *filename);
@@ -58,6 +60,7 @@ int is_file(char *command);
 /* environment.c */
 char *_getenv(const char *name);
 char *which(char *filename);
+char *cd(char *filename, general_t *info);
 void is_current_path(char *path, general_t *info);
 void get_full_env(void);
 
@@ -120,6 +123,10 @@ char *replace_value(general_t *info, int *index, char *string);
 char *replacement(general_t *info, int *index, char *string);
 char *replace_env(general_t *info, char *environment);
 
-/* alias.c */
+/*builinexit.c*/
+void exitshell(int status);
+
+/*path.c*/
+void constructCommandPath(char *commandPath, char *command);
 
 #endif

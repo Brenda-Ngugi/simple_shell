@@ -48,14 +48,14 @@ char *_getenv(const char *name)
 }
 
 /**
- * which - Find the directory needed
+ * cd - Find the directory needed
  *
  * @filename: Command received
  * @info: General info about the shell
  *
  * Return: pointer string with found path or NULL in failure.
  */
-char *which(char *filename, general_t *info)
+char *cd(char *filename, general_t *info)
 {
 	char *path, *tmp_path, *token;
 	char *slash;
