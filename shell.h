@@ -1,7 +1,7 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#define LINE_BUFSIZE 1024;
+#define LINE_BUFSIZE 1024
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -51,7 +51,7 @@ void echo_printer(int index, char *text, char **arguments);
 
 /* commands.c */
 void analyze(char **arguments, general_t *info, char *buff);
-void free_memory_p(void* ptr);
+void free_memory_p(void *ptr);
 
 /* permissions.c */
 int is_executable(char *filename);
