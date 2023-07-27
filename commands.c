@@ -24,8 +24,7 @@ void analyze(char **arguments, general_t *info, char *buff)
 	if (status == NON_PERMISSIONS)
 	{
 		info->status_code = 126;
-		info->error_code = ERROR_CODE_PERMISSION;
-		error(info);
+		void (*error_ptr)(general_t *info) = error;
 		return;
 	}
 
@@ -45,6 +44,5 @@ void analyze(char **arguments, general_t *info, char *buff)
 		return;
 	}
 	info->status_code = 127;
-	info->error_code = ERROR_CODE_CMD_NOT_FOUND;
-	error(info);
+	void (*error_ptr)(general_t *info) = error;
 }
