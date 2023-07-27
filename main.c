@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	if (info == NULL)
 	{
 		perror(argv[0]);
-		exit(1);
+		return (0);
 	}
 
 	info->pid = getpid();
