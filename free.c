@@ -17,16 +17,16 @@ void free_pointer(void *ptr)
 }
 
 /**
- * free_double_pointer - Free a double pointer allocated mem space
+ * free_memory_pp - Free a double pointer allocated mem space
  *@ptr: Double pointer to free
  *Return: Nothing
  **/
-void free_double_pointer(void **ptr)
+void free_memory_pp(void **ptr)
 {
 	void **temp;
 
 	for (temp = ptr; *temp != NULL; temp++)
-		free_pointer(*temp);
+		free_memory_p(*temp);
 
-	free_pointer(ptr);
+	free_memory_p(ptr);
 }

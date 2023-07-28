@@ -26,7 +26,7 @@ void execute(char *command, char **arguments, general_t *info, char *buff)
 		execve(command, arguments, environ);
 		perror("./sh");
 
-		free_double_pointer((void *) arguments);
+		free_memory_pp((void *) arguments);
 
 		if (info->value_path != NULL)
 		{

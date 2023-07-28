@@ -1,11 +1,10 @@
 #include "shell.h"
 /**
- * analyze - checks if the shell should run in interactive
- *or non-interactive mode
- * @arguments: Commands to execute
- * @info: General information about the shell (from general_t)
+ * analyze - Analyze	the arguments
+ *
+ * @arguments: Commands and arguments to execute
+ * @info: General information about the shell
  * @buff: Line readed
- *Return: Nothing
  **/
 void analyze(char **arguments, general_t *info, char *buff)
 {
@@ -24,7 +23,8 @@ void analyze(char **arguments, general_t *info, char *buff)
 	if (status == NON_PERMISSIONS)
 	{
 		info->status_code = 126;
-		void (*error_ptr)(general_t *info) = error;
+		info->error_code = _CODE_EACCES;
+		error(info);
 		return;
 	}
 
@@ -36,13 +36,16 @@ void analyze(char **arguments, general_t *info, char *buff)
 
 	if (current_directory(cmd, arguments, buff, info) == _TRUE)
 		return;
-	info->value_path = which(cmd);
+
+	info->value_path = which(cmd, info);
 	if (info->value_path != NULL)
 	{
 		execute(info->value_path, arguments, info, buff);
-		free(info->value_path);
+		free_memory_p((void *) info->value_path);
 		return;
 	}
+
 	info->status_code = 127;
-	void (*error_ptr)(general_t *info) = error;
+	info->error_code = _CODE_CMD_NOT_EXISTS;
+	error(info);
 }

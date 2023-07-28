@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
 /**
  * _getenv - Get a environment variable
  *
@@ -48,14 +50,14 @@ char *_getenv(const char *name)
 }
 
 /**
- * cd - Find the directory needed
+ * which - Find the directory needed
  *
  * @filename: Command received
  * @info: General info about the shell
  *
  * Return: pointer string with found path or NULL in failure.
  */
-char *cd(char *filename, general_t *info)
+char *which(char *filename, general_t *info)
 {
 	char *path, *tmp_path, *token;
 	char *slash;
@@ -119,12 +121,12 @@ void is_current_path(char *path, general_t *info)
  **/
 void get_full_env(void)
 {
-char **temp = environ;
-int i;
+        char **temp = environ;
+        int i;
 
-for (i = 0; temp[i] != NULL; i++)
-{
-print(temp[i]);
-_putchar('\n');
-}
+        for (i = 0; temp[i] != NULL; i++)
+        {
+                print(temp[i]);
+                _putchar('\n');
+        }
 }

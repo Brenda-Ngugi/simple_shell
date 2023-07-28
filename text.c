@@ -28,7 +28,7 @@ char *read_prompt()
 
 	if (read == EOF)
 	{
-		free_pointer((void *) buffer);
+		free_memory_p((void *) buffer);
 		return (NULL);
 	}
 
@@ -73,11 +73,11 @@ void start_prompt(general_t *info)
 			analyze_patterns(info, arguments);
 			analyze(arguments, info, buff);
 
-			free_double_pointer((void *) arguments);
+			free_memory_p((void *) arguments);
 		}
 
-		free_pointer((void *) buff);
-		free_pointer((void *) path);
+		free_memory_p((void *) buff);
+		free_memory_p((void *) path);
 	}
 
 }

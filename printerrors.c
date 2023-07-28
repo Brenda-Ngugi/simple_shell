@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  *_printerror - prints an error message to STDERR
- *@msg: the mesage to print
+ *@msg: the message to print
  *Return: Number of printed bytes
  */
 int print_err(char *msg)

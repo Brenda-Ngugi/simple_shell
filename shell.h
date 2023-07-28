@@ -1,33 +1,16 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-#define LINE_BUFSIZE 1024
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stdlib.h>
-#include <errno.h>
 #include "general.h"
 
 /* Entry point of the shell */
 void start(general_t *info);
-
-/* aliases.c */
-int hsh_alias(char **cmd);
-void set_alias(char *var_name, char *value);
-void print_alias(alias_t *alias);
-char **replace_aliases(char **cmd);
-
-/* lists.c */
-void free_list(list_t *head);
-void free_alias_list(alias_t *head);
-list_t *add_node_end(list_t **head, char *dir);
-alias_t *add_alias_end(alias_t **head, char *name, char *value);
-
-/* readline.c */
-char *_getline(void);
 
 /* builtins.c */
 int builtins(general_t *info, char **arguments);
@@ -36,9 +19,6 @@ int check_builtin(general_t *info, char **arguments);
 /* exit.c */
 void bin_exit(general_t *info, char **arguments);
 int number_controller(general_t *info, char *number);
-
-/* cd.c */
-int bin_cd(general_t *info, char **arguments);
 
 /* env.c */
 void bin_env(general_t *info, char **arguments);
@@ -51,7 +31,6 @@ void echo_printer(int index, char *text, char **arguments);
 
 /* commands.c */
 void analyze(char **arguments, general_t *info, char *buff);
-void free_memory_p(void *ptr);
 
 /* permissions.c */
 int is_executable(char *filename);
@@ -59,10 +38,7 @@ int is_file(char *command);
 
 /* environment.c */
 char *_getenv(const char *name);
-char *which(char *filename);
-char *filename = commands.c;
-char *path = which(filename);
-char *cd(char *filename, general_t *info);
+char *which(char *filename, general_t *info);
 void is_current_path(char *path, general_t *info);
 void get_full_env(void);
 
@@ -76,10 +52,9 @@ char *message_selector(general_t info);
 void error(general_t *info);
 void error_extra(general_t *info, char *extra);
 
-/* free.c */
-void free_pointer(void *ptr);
-void free_double_pointer(void **ptr);
 /* memory.c */
+void free_memory_pp(void **ptr);
+void free_memory_p(void *ptr);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 
 /* text.c */
@@ -124,11 +99,4 @@ char *replace_value(general_t *info, int *index, char *string);
 /* patterns_replacer.c */
 char *replacement(general_t *info, int *index, char *string);
 char *replace_env(general_t *info, char *environment);
-
-/*builinexit.c*/
-void exitshell(int status);
-
-/*path.c*/
-void constructCommandPath(char *commandPath, char *command);
-
 #endif
